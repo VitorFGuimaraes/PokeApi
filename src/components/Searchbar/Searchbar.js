@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchPokemon } from '../utils/api';
+import { searchPokemon } from '../../utils/api';
 
 const Searchbar = () => {
     const [search, setSearch] = useState('')
@@ -28,7 +28,7 @@ const Searchbar = () => {
             {pokemon ? (
                 <div>
                     <div>Nome: {pokemon.name}</div>
-                    <div>Tipo: {pokemon.types[0].type.name}</div>
+                    <div>Tipo: {pokemon.types.map(t => t.type.name).join(',')}</div>
                     <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                 </div>
             ) : null}
