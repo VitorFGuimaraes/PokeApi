@@ -1,8 +1,13 @@
 import React from "react";
+import '../Main/main.css';
 
 const Pokemon = (props) => {
-    const {pokemon} = props
-    console.log("pokemons ", pokemon);
+    const {pokemon} = props;
+    const onHeartClick = () => {
+        
+    }
+    const heart = '❤'
+
         
     return (
         <div className='pokemon-card'>
@@ -22,14 +27,11 @@ const Pokemon = (props) => {
                              </div>)          
                     })}
                     </div>
-                    <button className='pokemon-heart-btn' onclick={onHeartClick}>
+                    <button className='pokemon-heart-btn' onClick={onHeartClick} >
                         {heart}
                     </button>
-
                </div>
             </div>
-           
-
         </div>
     )
 }
