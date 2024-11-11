@@ -1,14 +1,26 @@
 import React from 'react';
 import '../Header/header.css';
 import Pokemon from '../Main/main';
+import Pagination from '../Pagination/Pagination'
 
 const Pokedex = (props) => {
-    const { pokemons, loading } = props;
+    const { pokemons, loading, page, totalPages } = props;
+    const onLeftClick = () => {
+        
+    }
+    const onRightClick = () => {
+
+    }
     return (
         <div>
             <div className='pokedex-header'>
                 <h1>Pokedex</h1>
-                <div className='pagination'>Paginação</div>
+                <Pagination 
+                    page={page+1}
+                    totalPages={totalPages}
+                    onLeftClick={onLeftClick}
+                    onRightClick={onRightClick}
+                />
             </div>
             {loading ? (
                 <div>Carregando...</div>
