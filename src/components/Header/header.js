@@ -4,7 +4,6 @@ import Pokemon from '../Main/main';
 
 const Pokedex = (props) => {
     const { pokemons, loading } = props;
-
     return (
         <div>
             <div className='pokedex-header'>
