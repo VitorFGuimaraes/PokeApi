@@ -16,7 +16,7 @@ const Navbar = () => {
                 />
             </div>
             <div>
-                {favoritePokemons ? favoritePokemons.length : 0}💖
+                { favoritePokemons.length}💖
             </div>
         </nav>
     )
