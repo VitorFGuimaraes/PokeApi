@@ -1,39 +1,35 @@
 import React, { useState } from 'react';
-import { searchPokemon } from '../../utils/api';
+import '../Searchbar/searchbar.css';
 
-const Searchbar = () => {
-    const [search, setSearch] = useState('')
-    const [pokemon, setPokemon] = useState()
+const Searchbar = (props) => {
+    const { onSearch } = props;
+    const [search, setSearch] = useState('');
+
     const onChangeHandler = (e) => {
-       setSearch(e.target.value)
-    }
-   
-    const onButtonClickHandler = () => {
-        onSearchHandler(search)
-    }
+        setSearch(e.target.value);
+        if (e.target.value.length === 0) {
+            onSearch(undefined);
+        }
+    };
 
-    const onSearchHandler = async (pokemon) => {
-        const result = await searchPokemon(pokemon)
-        setPokemon(result)        
-    }    
+    const onButtonClickHandler = () => {
+        onSearch(search);
+    };
 
     return (
         <div className='searchbar-container'>
             <div className='searchbar'>
-                <input placeholder='Buscar Pokemon' onChange={onChangeHandler}/>
+                <input
+                    placeholder='Buscar Pokemon'
+                    value={search}
+                    onChange={onChangeHandler}
+                />
             </div>
             <div className='searchbar-btn'>
-                <button onClick={onButtonClickHandler} >Buscar</button>
+                <button onClick={onButtonClickHandler}>Buscar</button>
             </div>
-            {pokemon ? (
-                <div>
-                    <div>Nome: {pokemon.name}</div>
-                    <div>Tipo: {pokemon.types.map(t => t.type.name).join(',')}</div>
-                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                </div>
-            ) : null}
         </div>
-    )
-}
+    );
+};
 
 export default Searchbar;
