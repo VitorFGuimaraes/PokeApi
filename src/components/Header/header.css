@@ -11,3 +11,9 @@
   gap: 10px;
   grid-template-columns: repeat(3, 1fr);
 }
+
+.pokedex__not-found {
+  text-align: center;
+  font-size: 1.25rem;
+  padding: 20px;
+}

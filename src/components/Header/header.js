@@ -6,9 +6,9 @@ import { FavoriteContext } from '../contexts/favoritesContext';
 
 const Pokedex = (props) => {
     const { pokemons = [], loading, page, setPage, totalPages, isFavoritesOnly, notFound } = props;
-    const { favoritePokemons } = useContext(FavoriteContext);
+    const { favoritePokemons } = useContext(FavoriteContext);  
 
-    const displayedPokemons = isFavoritesOnly 
+    const displayedPokemons = isFavoritesOnly
         ? pokemons.filter(pokemon => favoritePokemons.includes(pokemon.name))
         : pokemons;
 
@@ -37,7 +37,7 @@ const Pokedex = (props) => {
             </div>
             {loading ? (
                 <div className="pokedex__loading">Carregando...</div>
-            ) : notFound ? (  // Exibe mensagem de erro quando notFound é true
+            ) : notFound ? (
                 <div className="pokedex__not-found">Esse Pokémon não existe!</div>
             ) : (
                 <div className="pokedex__grid">
@@ -46,7 +46,7 @@ const Pokedex = (props) => {
                             <Pokemon key={index} pokemon={pokemon} />
                         ))
                     ) : (
-                        <div className="pokedex__no-favorites">Nenhum Pokémon favoritado ainda!</div>
+                        <div className="pokedex__not-found">Nenhum Pokémon favoritado ainda!</div>
                     )}
                 </div>
             )}
