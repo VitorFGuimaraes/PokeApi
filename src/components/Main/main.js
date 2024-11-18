@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import '../Main/main.css';
-import FavoriteContext from '../contexts/favoritesContext';
+import { FavoriteContext } from '../contexts/favoritesContext';
+
 
 const Pokemon = (props) => {
     const { favoritePokemons, updateFavoritePokemons } = useContext(FavoriteContext);

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
 import './App.css';
 import Navbar from '../Navigation/Navigation';
 import Searchbar from '../Searchbar/Searchbar';
 import Pokedex from '../Header/header';
 import { getPokemonData, getPokemons, searchPokemon } from '../../utils/api';
-import '../Pagination/pagination.css';
 import { FavoriteProvider } from '../contexts/favoritesContext';
 
 const favoritesKey = 'f';
@@ -32,7 +32,7 @@ function App() {
       setLoading(false);
       setTotalPages(Math.ceil(data.count / itensPerPage));
     } catch (error) {
-      console.log("fetchPokemonsError: ", error);
+      console.log('fetchPokemonsError: ', error);
     }
   };
 
@@ -87,22 +87,42 @@ function App() {
         updateFavoritePokemons: updateFavoritePokemons
       }}
     >
-      <div className="app">
-        <Navbar />
-        <Searchbar onSearch={onSearchHandler} />
-        {notFound ? (
-          <div className="app__not-found-text">Esse pokemon não existe!</div>
-        ) : (
-          <Pokedex
-            pokemons={pokemons}
-            loading={loading}
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-            notFound={notFound}
-          />
-        )}
-      </div>
+      <Router>
+        <div className='app'>
+          <Navbar />
+          <Searchbar onSearch={onSearchHandler} />
+          <Routes>
+            <Route exact path='/' element={
+              notFound ? (
+                <div className='app__not-found-text'>Esse pokemon não existe!</div>
+              ) : (
+                <Pokedex
+                  pokemons={pokemons}
+                  loading={loading}
+                  page={page}
+                  setPage={setPage}
+                  totalPages={totalPages}
+                  notFound={notFound}
+                />
+              )
+            } />
+            <Route path='/favorites' element={
+              favorites.length > 0 ? (
+                <Pokedex
+                  pokemons={pokemons.filter(pokemon => favorites.includes(pokemon.name))}
+                  loading={loading}
+                  page={page}
+                  setPage={setPage}
+                  totalPages={totalPages}
+                  notFound={notFound}
+                />
+              ) : (
+                <div className='app__not-found-text'>Nenhum Pokémon favoritado ainda!</div>
+              )
+            } />
+          </Routes>
+        </div>
+      </Router>
     </FavoriteProvider>
   );
 }
