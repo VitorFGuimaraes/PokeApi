@@ -1,17 +1,15 @@
 * {
-    margin: 0px;
-  }
-  
-  nav {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  .navbar-img {
-    width: 160px;
-  }
-  
- 
+  margin: 0px;
+}
+
+.navbar {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navbar__logo-img {
+  width: 160px;
+}

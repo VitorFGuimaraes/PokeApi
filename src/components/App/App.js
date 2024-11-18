@@ -74,8 +74,8 @@ function App() {
       setPokemons([]);
     } else {
       setPokemons([result]);
-      setPage(0)
-      setTotalPages(1)
+      setPage(0);
+      setTotalPages(1);
     }
     setLoading(false);
   };
@@ -87,11 +87,11 @@ function App() {
         updateFavoritePokemons: updateFavoritePokemons
       }}
     >
-      <div>
+      <div className="app">
         <Navbar />
-        <Searchbar onSearch={onSearchHandler}/>
+        <Searchbar onSearch={onSearchHandler} />
         {notFound ? (
-          <div className='not-found-text'>Esse pokemon não existe!</div>
+          <div className="app__not-found-text">Esse pokemon não existe!</div>
         ) : (
           <Pokedex
             pokemons={pokemons}
