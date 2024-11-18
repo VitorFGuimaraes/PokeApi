@@ -12,20 +12,20 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar">
+        <nav className='navbar'>
             <div>
                 <img 
-                    alt="pokeapi-logo"
+                    alt='pokeapi-logo'
                     src={logoImg}
-                    className="navbar__img"
+                    className='navbar__img'
                 />
             </div>
-            <div className="navbar__favorites">
+            <div className='navbar__favorites'>
                 {favoritePokemons.length} 💖
             </div>
             <div>
                 <button 
-                    className="navbar__clear-favorites-btn" 
+                    className='navbar__clear-favorites-btn' 
                     onClick={handleClearFavorites}
                 >
                     Limpar Favoritos
