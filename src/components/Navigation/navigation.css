@@ -4,15 +4,20 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .navbar__logo {
   display: flex;
   align-items: center;
+
 }
 
 .navbar__logo-img {
   width: 160px;
+
 }
 
 .navbar__favorites {
@@ -22,6 +27,11 @@
 .navbar__favorites-link {
   text-decoration: none;
   color: inherit;
+}
+
+.navbar__buttons-container {
+  display: flex;
+  gap: 10px;
 }
 
 .navbar__clear-favorites-btn {
@@ -37,4 +47,26 @@
 
 .navbar__clear-favorites-btn:hover {
   background-color: #e73c3c; 
+}
+
+.navbar__favorite-btn {
+  background-color: yellowgreen;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.navbar__home-btn {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
 }

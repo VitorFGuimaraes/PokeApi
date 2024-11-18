@@ -1,36 +1,48 @@
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
-
 export const searchPokemon = async (pokemon) => {
     try {
-        const url = `${BASE_URL}/${pokemon}`; 
+        const url = `${BASE_URL}/${pokemon.toLowerCase()}`; 
         const response = await fetch(url);
 
         if (!response.ok) {
-            throw new Error('Pokémon não encontrado');
+            console.log('Pokémon não encontrado');
+            return null;
         }
 
         return await response.json();
     } catch (error) {
         console.log('Erro na busca do Pokémon: ', error);
-        throw error; 
+        return null; 
     }
 };
 
-export const getPokemons = async (limit = 50, offset = 0) => {
+export const fetchPokemons = async (limit = 50, page = 0) => {
     try {
+        const offset = limit * page;
         const url = `${BASE_URL}?limit=${limit}&offset=${offset}`;
         const response = await fetch(url);
-
 
         if (!response.ok) {
             throw new Error('Erro ao obter lista de Pokémons');
         }
 
-        return await response.json();
+        const data = await response.json();
+        
+    
+        const promises = data.results.map(async (pokemon) => {
+            return await getPokemonData(pokemon.url);
+        });
+
+        const results = await Promise.all(promises);
+
+        return {
+            count: data.count,
+            results,
+        };
     } catch (error) {
         console.log('Erro ao obter Pokémons: ', error);
-        throw error; 
+        throw error;
     }
 };
 
@@ -45,6 +57,6 @@ export const getPokemonData = async (url) => {
         return await response.json();
     } catch (error) {
         console.log('Erro ao obter dados do Pokémon: ', error);
-        throw error; 
+        throw error;
     }
 };
